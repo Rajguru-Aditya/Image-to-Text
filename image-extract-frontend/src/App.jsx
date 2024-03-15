@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { FileUploader } from "react-drag-drop-files";
+import axios from "axios"
 
 const fileTypes = ["JPG", "PNG", "GIF", "PDF", "TIFF"];
 
@@ -9,10 +10,20 @@ function App() {
   const handleChange = (file) => {
     setFile(file);
   };
+  const [textFromImage, setTextFromImage] = useState("");
 
   useEffect(() => {
     console.log("SELECTED FILE", file);
   }, [file]);
+
+  useEffect(() => {
+    console.log("TEXT FROM IMAGE ->", textFromImage)
+  },[textFromImage])
+
+  const GetText = async () => {
+    const response = await axios.get("http://127.0.0.1:5000/text")
+    return setTextFromImage(response?.data)
+  }
 
   return (
     <>
@@ -36,7 +47,11 @@ function App() {
             }
           />
         </div>
-        <button id="ext-txt-btn" disabled={!file}>
+        <button 
+          id="ext-txt-btn"
+          // disabled={!file}
+          onClick={GetText}
+        >
           Extract Text
         </button>
         <div className="text-area-container">
@@ -46,6 +61,7 @@ function App() {
             rows="10"
             cols="50"
             placeholder="Extracted text will be displayed here"
+            value={textFromImage}
           />
         </div>
       </div>
