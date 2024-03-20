@@ -28,6 +28,7 @@
   transition: border-color 0.25s;
   width: 100%;
   min-height: 300px;
+  flex: 1;
 }
 
 .file-drag-drop-container:hover {
@@ -78,6 +79,7 @@ label {
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex: 1;
 }
 
 #extracted-text {
@@ -88,7 +90,7 @@ label {
   padding: 1rem;
   font-size: 1.5em;
   font-weight: 500;
-  color: #646cff;
+  color: #fff;
   resize: none;
   box-sizing: border-box;
 }
