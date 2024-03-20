@@ -80,6 +80,9 @@ label {
   justify-content: center;
   width: 100%;
   flex: 1;
+  max-height: 80vh;
+  overflow-y: scroll;
+  text-align: left;
 }
 
 #extracted-text {
